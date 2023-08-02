@@ -63,9 +63,10 @@
     ">Scissors</button>
 
     <button onclick="
-        if (count / totalResult >= 1){
+        let ratio = count / totalResult;
+        if (ratio <= 1.5){
             alert('You win');
-        } else if (count / totalResult === 2) {
+        } else if (ratio === 2.000000) {
             alert('It\'s a tie');
         }else{
             alert('You loose');
@@ -79,7 +80,6 @@
             let result = '';
             let totalResult = 0;
             function pickComputerMove() {
-                count++;
                 if (count > 14){
                     return false;
                 }
@@ -92,7 +92,7 @@
                     computerMove = `scissor`;
                 }
                 console.log(`totalResult: ${totalResult} , count: ${count}`)
-
+                count++;
                  return true;
             }
         </script>
