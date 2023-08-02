@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>        
+    </head>
+    <body>
+        <!-- <p>Rock Paper Scissors</p> -->
+        <p>Rock Paper Scissors... Just for my brother Neeal!</p>
+
+        <button onclick="
+        if(pickComputerMove()){
+            // let result = '';
+            if (computerMove == 'rock'){
+                result = 'It\'s a tie';
+                count--;
+            }else if (computerMove == 'paper'){
+                result = 'You lose';
+            }else {
+                result = 'You win';
+                totalResult++;
+            }
+                alert(`You picked rock & computer picked ${computerMove}.\n${result}!`);
+        } else {
+            alert(`That's all, Close the Tab and get back to work`);
+        }
+        ">Rock</button>
+
+        <button onclick="
+        if(pickComputerMove()){
+
+        // let result = '';
+        if (computerMove == 'rock'){
+            result = 'You win';
+            totalResult++;
+        }else if (computerMove == 'paper'){
+            result = 'It\'s a tie';
+            count--;
+        }else {
+            result = 'You loose';
+        }
+            alert(`You picked paper & computer picked ${computerMove}.\n${result}!`);
+    } else {
+            alert(`That's all, Close the Tab and get back to work`);
+        }
+    ">Paper</button>
+        <button onclick="
+        if (pickComputerMove()){
+
+        // let result = '';
+        if (computerMove == 'rock'){
+            result = 'You loose';
+        }else if (computerMove == 'paper'){
+            result = 'You win';
+            totalResult++;
+        }else {
+            result = 'It\'s a tie';
+            count--;
+        }
+            alert(`You picked scissor & computer picked ${computerMove}.\n${result}!`);
+    } else {
+            alert(`That's all, Close the Tab and get back to work`);
+        }
+    ">Scissors</button>
+
+    <button onclick="
+        if (count / totalResult >= 1){
+            alert('You win');
+        } else if (count / totalResult === 2) {
+            alert('It\'s a tie');
+        }else{
+            alert('You loose');
+        }
+    ">
+        Total result
+    </button>
+        <script>
+            let computerMove;
+            let count = 0;
+            let result = '';
+            let totalResult = 0;
+            function pickComputerMove() {
+                count++;
+                if (count > 14){
+                    return false;
+                }
+                let randomNumber = Math.random();
+                if (randomNumber > 0 && randomNumber < 1/3){
+                    computerMove = `rock`;
+                }else if (randomNumber > 1/3 && randomNumber < 2/3){
+                    computerMove = `paper`;
+                }else {
+                    computerMove = `scissor`;
+                }
+                console.log(`totalResult: ${totalResult} , count: ${count}`)
+
+                 return true;
+            }
+        </script>
+    </body>
+</html>
