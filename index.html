@@ -12,12 +12,13 @@
             // let result = '';
             if (computerMove == 'rock'){
                 result = 'It\'s a tie';
-                count--;
+                score.ties += 1;
             }else if (computerMove == 'paper'){
                 result = 'You lose';
+                score.losses += 1;
             }else {
                 result = 'You win';
-                totalResult++;
+                score.wins += 1;
             }
                 alert(`You picked rock & computer picked ${computerMove}.\n${result}!`);
         } else {
@@ -31,12 +32,13 @@
         // let result = '';
         if (computerMove == 'rock'){
             result = 'You win';
-            totalResult++;
+            score.wins += 1;
         }else if (computerMove == 'paper'){
             result = 'It\'s a tie';
-            count--;
+            score.ties += 1;
         }else {
             result = 'You loose';
+            score.losses += 1;
         }
             alert(`You picked paper & computer picked ${computerMove}.\n${result}!`);
     } else {
@@ -49,12 +51,13 @@
         // let result = '';
         if (computerMove == 'rock'){
             result = 'You loose';
+            score.losses += 1;
         }else if (computerMove == 'paper'){
             result = 'You win';
-            totalResult++;
+            score.wins += 1;
         }else {
             result = 'It\'s a tie';
-            count--;
+            score.ties += 1;
         }
             alert(`You picked scissor & computer picked ${computerMove}.\n${result}!`);
     } else {
@@ -63,22 +66,26 @@
     ">Scissors</button>
 
     <button onclick="
-        let ratio = count / totalResult;
-        if (ratio <= 1.5){
-            alert('You win');
-        } else if (ratio === 2.000000) {
-            alert('It\'s a tie');
+        if (score.wins > score.losses){
+            alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou win`);
+        } else if (score.losses === score.wins) {
+            alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nIt's a tie`);
         }else{
-            alert('You loose');
+            alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou loose`);
         }
     ">
-        Total result
+        Score
     </button>
         <script>
             let computerMove;
+            const score = {
+                wins: 0,
+                losses: 0, 
+                ties: 0
+            };
+            
             let count = 0;
             let result = '';
-            let totalResult = 0;
             function pickComputerMove() {
                 if (count > 14){
                     return false;
@@ -91,7 +98,7 @@
                 }else {
                     computerMove = `scissor`;
                 }
-                console.log(`totalResult: ${totalResult} , count: ${count}`)
+                // console.log(`score: ${score.wins}, ${score.losses} , count: ${count}`)
                 count++;
                  return true;
             }
