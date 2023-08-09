@@ -20,6 +20,7 @@
                 result = 'You win';
                 score.wins += 1;
             }
+            localStorage.setItem('score', JSON.stringify(score));
                 alert(`You picked rock & computer picked ${computerMove}.\n${result}!`);
         } else {
             alert(`That's all, Close the Tab and get back to work`);
@@ -40,6 +41,7 @@
             result = 'You loose';
             score.losses += 1;
         }
+        localStorage.setItem('score', JSON.stringify(score));
             alert(`You picked paper & computer picked ${computerMove}.\n${result}!`);
     } else {
             alert(`That's all, Close the Tab and get back to work`);
@@ -59,6 +61,7 @@
             result = 'It\'s a tie';
             score.ties += 1;
         }
+        localStorage.setItem('score', JSON.stringify(score));
             alert(`You picked scissor & computer picked ${computerMove}.\n${result}!`);
     } else {
             alert(`That's all, Close the Tab and get back to work`);
@@ -73,21 +76,19 @@
         }else{
             alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou loose`);
         }
+
     ">
-        Score
-    </button>
+        Score</button>
+
         <script>
             let computerMove;
-            const score = {
-                wins: 0,
-                losses: 0, 
-                ties: 0
-            };
-            
-            let count = 0;
+            let score = JSON.parse(localStorage.getItem('score')) || {wins: 0, losses: 0, ties: 0};
+            localStorage.setItem('score', JSON.stringify(score));
+            // const score = JSON.parse(localStorage.getItem('score'));
+
             let result = '';
             function pickComputerMove() {
-                if (count > 14){
+                if (score.wins + score.losses + score.ties > 14){
                     return false;
                 }
                 let randomNumber = Math.random();
@@ -99,9 +100,9 @@
                     computerMove = `scissor`;
                 }
                 // console.log(`score: ${score.wins}, ${score.losses} , count: ${count}`)
-                count++;
                  return true;
             }
+
         </script>
     </body>
 </html>
