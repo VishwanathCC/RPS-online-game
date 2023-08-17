@@ -25,6 +25,7 @@
         } else {
             alert(`That's all, Close the Tab and get back to work`);
         }
+        location.reload();
         ">Rock</button>
 
         <button onclick="
@@ -46,7 +47,9 @@
     } else {
             alert(`That's all, Close the Tab and get back to work`);
         }
+        location.reload();
     ">Paper</button>
+
         <button onclick="
         if (pickComputerMove()){
 
@@ -66,29 +69,23 @@
     } else {
             alert(`That's all, Close the Tab and get back to work`);
         }
+        location.reload();
     ">Scissors</button>
 
-    <button onclick="
-        if (score.wins > score.losses){
-            alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou win`);
-        } else if (score.losses === score.wins) {
-            alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nIt's a tie`);
-        }else{
-            alert(`wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou loose`);
-        }
-
-    ">
-        Score</button>
+    <p class="js-score">Score</p>
 
         <script>
             let computerMove;
+            let lastPlayed;
             let score = JSON.parse(localStorage.getItem('score')) || {wins: 0, losses: 0, ties: 0};
             localStorage.setItem('score', JSON.stringify(score));
             // const score = JSON.parse(localStorage.getItem('score'));
 
+
             let result = '';
             function pickComputerMove() {
-                if (score.wins + score.losses + score.ties > 14){
+                const currentDate = new Date();
+                if (sessionTimeManager() || score.wins + score.losses + score.ties > 14 ){
                     return false;
                 }
                 let randomNumber = Math.random();
@@ -103,6 +100,47 @@
                  return true;
             }
 
+            function updateScore() {
+                let results;
+                if (score.wins > score.losses){
+                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou win`;
+                } else if (score.losses === score.wins) {
+                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nIt's a tie`;
+                }else{
+                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou loose`;
+                }
+                return results;
+            }
+
+            function sessionTimeManager() {
+                // Check if a timestamp indicating the last access time exists in localStorage
+                const lastAccessTimestamp = localStorage.getItem('lastAccessTimestamp');
+
+                if (!lastAccessTimestamp) {
+                // Grant access if no timestamp exists
+                localStorage.setItem('lastAccessTimestamp', Date.now().toString());
+                console.log('Access granted for the first time.');
+                return true;
+                } else {
+                const currentTime = Date.now();
+                const timeDifference = currentTime - parseInt(lastAccessTimestamp, 10);
+                const fourHoursInMillisq = 2 * 60 * 60 * 1000; // 4 hours in milliseconds
+
+                if (timeDifference >= fourHoursInMillis) {
+                    // Grant access if time difference is greater than or equal to 4 hours
+                    localStorage.setItem('lastAccessTimestamp', currentTime.toString());
+                    console.log('Access granted after 4 hours.');
+                    score = {wins: 0, losses: 0, ties: 0};
+                    localStorage.setItem('score', JSON.stringify(score));
+                    return true;
+                } else {
+                    // Deny access if time difference is less than 4 hours
+                    console.log('Access denied. Please wait for 4 hours.');
+                    return false;
+                }
+                }
+            }
+            document.querySelector('.js-score').innerHTML = updateScore();
         </script>
     </body>
 </html>
