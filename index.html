@@ -1,7 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rock Paper Scissors</title>        
+        <title>Rock Paper Scissors</title>     
+        <style>
+            body {
+                background-color: black;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .move-button {
+                background-color: transparent;
+                border: 5px solid green;
+                width: 120px;
+                height: 120px;
+                cursor: pointer;
+                border-radius: 60px;
+                margin-right: 10px;
+            }
+
+            .move-icon {
+                height: 50px;
+            }
+
+            .js-score {
+                font-size: 25px;
+                font-weight: bold;
+            }
+        </style>   
     </head>
     <body>
         <!-- <p>Rock Paper Scissors</p> -->
@@ -21,14 +47,16 @@
                 score.wins += 1;
             }
             localStorage.setItem('score', JSON.stringify(score));
-                alert(`You picked rock & computer picked ${computerMove}.\n${result}!`);
+                alert(`You picked rock & computer picked ${computerMove}.\n${result}!`);                
         } else {
             alert(`That's all, Close the Tab and get back to work`);
         }
         location.reload();
-        ">Rock</button>
+        "  class = "move-button">
+        <img src="images/rock-emoji.png" class="move-icon" > 
+        </button>
 
-        <button onclick="
+        <button class = "move-button" onclick="
         if(pickComputerMove()){
 
         // let result = '';
@@ -48,9 +76,11 @@
             alert(`That's all, Close the Tab and get back to work`);
         }
         location.reload();
-    ">Paper</button>
+    " class = "move-button">
+        <img src="images/paper-emoji.png" class="move-icon"> 
+    </button>
 
-        <button onclick="
+        <button class = "move-button" onclick="
         if (pickComputerMove()){
 
         // let result = '';
@@ -70,7 +100,11 @@
             alert(`That's all, Close the Tab and get back to work`);
         }
         location.reload();
-    ">Scissors</button>
+    " class = "move-button">
+        <img src="images/scissors-emoji.png" class="move-icon"> 
+    </button>
+
+    <p class="js-current-scene"></p>
 
     <p class="js-score">Score</p>
 
@@ -80,7 +114,6 @@
             let score = JSON.parse(localStorage.getItem('score')) || {wins: 0, losses: 0, ties: 0};
             localStorage.setItem('score', JSON.stringify(score));
             // const score = JSON.parse(localStorage.getItem('score'));
-
 
             let result = '';
             function pickComputerMove() {
@@ -94,7 +127,7 @@
                 }else if (randomNumber > 1/3 && randomNumber < 2/3){
                     computerMove = `paper`;
                 }else {
-                    computerMove = `scissor`;
+                    computerMove = `scissors`;
                 }
                 // console.log(`score: ${score.wins}, ${score.losses} , count: ${count}`)
                  return true;
@@ -103,11 +136,11 @@
             function updateScore() {
                 let results;
                 if (score.wins > score.losses){
-                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou win`;
+                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} <br><br>You win`;
                 } else if (score.losses === score.wins) {
-                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nIt's a tie`;
+                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} <br><br>It's a tie`;
                 }else{
-                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} \nYou loose`;
+                results = `wins: ${score.wins}, losses: ${score.losses}, ties: ${score.ties} <br><br>You loose`;
                 }
                 return results;
             }
