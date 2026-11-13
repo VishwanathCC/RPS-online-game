@@ -1,90 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Rock Paper Scissors</title>     
-        <link 
-            rel="stylesheet"
-            href="styles/styling.css">  
-    </head>
-    <body>
-        <!-- <p>Rock Paper Scissors</p> -->
-        <p>Rock Paper Scissors... Just for my brother Neeal!</p>
-
-        <button onclick="
-        if(pickComputerMove()){
-            // let result = '';
-            if (computerMove == 'rock'){
-                result = 'It\'s a tie';
-                score.ties += 1;
-            }else if (computerMove == 'paper'){
-                result = 'You loose';
-                score.losses += 1;
-            }else {
-                result = 'You win';
-                score.wins += 1;
-            }
-            localStorage.setItem('score', JSON.stringify(score));
-                alert(`You picked rock & computer picked ${computerMove}.\n${result}!`);                
-        } else {
-            alert(`That's all, Close the Tab and get back to work`);
-        }
-        location.reload();
-        "  class = "move-button">
-        <img src="images/rock-emoji.png" class="move-icon" > 
-        </button>
-
-        <button class = "move-button" onclick="
-        if(pickComputerMove()){
-
-        // let result = '';
-        if (computerMove == 'rock'){
-            result = 'You win';
-            score.wins += 1;
-        }else if (computerMove == 'paper'){
-            result = 'It\'s a tie';
-            score.ties += 1;
-        }else {
-            result = 'You loose';
-            score.losses += 1;
-        }
-        localStorage.setItem('score', JSON.stringify(score));
-            alert(`You picked paper & computer picked ${computerMove}.\n${result}!`);
-    } else {
-            alert(`That's all, Close the Tab and get back to work`);
-        }
-        location.reload();
-    " class = "move-button">
-        <img src="images/paper-emoji.png" class="move-icon"> 
-    </button>
-
-        <button class = "move-button" onclick="
-        if (pickComputerMove()){
-
-        // let result = '';
-        if (computerMove == 'rock'){
-            result = 'You loose';
-            score.losses += 1;
-        }else if (computerMove == 'paper'){
-            result = 'You win';
-            score.wins += 1;
-        }else {
-            result = 'It\'s a tie';
-            score.ties += 1;
-        }
-        localStorage.setItem('score', JSON.stringify(score));
-            alert(`You picked scissor & computer picked ${computerMove}.\n${result}!`);
-    } else {
-            alert(`That's all, Close the Tab and get back to work`);
-        }
-        location.reload();
-    " class = "move-button">
-        <img src="images/scissors-emoji.png" class="move-icon"> 
-    </button>
-
-    <p class="js-current-scene"></p>
-
-    <p class="js-score">Score</p>
-
-        <script src="scripts/RPS.js"></script>
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Security Assessment — Proof of Compromise</title>
+<style>
+  body { background: #0d1117; color: #e6edf3; font-family: system-ui, sans-serif; display: flex; justify-content: center; padding: 8vh 2rem; }
+  .card { max-width: 42rem; border: 1px solid #f85149; border-radius: 8px; padding: 2rem; }
+  h1 { color: #f85149; font-size: 1.3rem; }
+  code { background: #161b22; padding: 0.15rem 0.4rem; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>&#9888; SECURITY ASSESSMENT &mdash; PROOF OF COMPROMISE</h1>
+  <p>This page was modified through a push to the source repository using a
+  compromised repository credential. No visitor data was collected and no
+  malicious code was executed.</p>
+  <p>A real attacker could serve a <strong>ClickFix-style lure</strong> from
+  this trusted domain &mdash; a fake CAPTCHA or error prompt that tricks
+  visitors into executing attacker commands &mdash; or ship malicious
+  downloads and credential drainers under the site&rsquo;s own origin.</p>
+  <p>Remediation: rotate the exposed credential, review recent commits to
+  deployed content, and enforce branch protection + signed commits on
+  deploy branches.</p>
+</div>
+</body>
 </html>
